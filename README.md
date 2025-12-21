@@ -1,5 +1,8 @@
 # cpp_learning_notes
 
+> Reference:
+> [CS106L Text Book](https://cs106l.github.io/textbook/)
+
 ## Chapter 1: Types & Structs
 
 ```cpp
@@ -126,3 +129,59 @@ std::set is an std::map without values
 std::unordered_map<K, V> requires K to have a hash function and equality  
 you can set load_factor by using max_load_factor()
 
+### Chapter 5: Iterators & Pointers
+
+if one container is empty, then `begin()` and `end()` are equal
+
+if the elements is a struct, we can access its members with `->`
+
+#### Iterators Categories
+
+##### Output
+
+an iterator is an output iterator if it supports overwriting the pointed to element via `operator=`, e.g.:
+```cpp
+*it = elem;
+```
+
+##### Input
+
+an iterator is an input iterator if it supports reading the pointed to element, e.g.:
+```cpp
+auto elem = *it
+```
+
+##### Forward
+
+guarantee that multiple passes are valid, if iterators `a` and `b`  point to the same element, means `a == b`, it must hold that `++a == ++b`
+
+every STL container's iterators are forward
+
+##### Bidirection
+
+a kind of forward iterators that can be moved backwards as well as forwards, e.g.:
+```cpp
+--it;
+```
+
+##### Random Access
+
+a bidirectional iterator that supports jumping forwards or backwards multiple elements at a time
+
+##### Contiguous
+
+a subset of random-access iterators that further stipulate that their elements are stored contiguously in memory
+
+#### Iterator Flavors
+
+iterator "falvors" alow us to handle `const` containers more appropriately
+
+##### `const` Iterators
+
+`std.begin()` for `const` containers and `std::cbegin()` for non `const` containers
+
+##### Reverse Iterators
+
+`std::rbegin()`
+
+Reverse iterators can only exist for bidirectional iterators

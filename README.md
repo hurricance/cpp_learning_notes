@@ -135,6 +135,8 @@ if one container is empty, then `begin()` and `end()` are equal
 
 if the elements is a struct, we can access its members with `->`
 
+all iterator operation should be in constant time
+
 #### Iterators Categories
 
 ##### Output

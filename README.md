@@ -3,7 +3,7 @@
 > Reference:
 > [CS106L Text Book](https://cs106l.github.io/textbook/)
 
-## Chapter 1: Types & Structs
+### Chapter 1: Types & Structs
 
 ```cpp
 using: type alias
@@ -22,9 +22,9 @@ int num(12.0)
 
 #### Uniform initialization(list initialization) (C++ 11)
 
->> uniform initialization cares about types, doesn't allow for narrowing conversions
+> uniform initialization cares about types, doesn't allow for narrowing conversions
 ```cpp
-int num{12.0}
+int num{12.0} // hint error
 ```
 
 #### Structed Binding (C++17)
@@ -63,10 +63,10 @@ std::vector<int>& bad_ref{ const_vec }; // you can't declare a non-const referen
 - ios_base
   - basic_ios
     - istream
-      - basic_istringstrema
+      - basic_istringstream
       - basic_ifstream
     - ostream
-      - basic_ostringstrema
+      - basic_ostringstream
       - basic_ofstream
     - iostream
       - basic_stringstream
@@ -89,7 +89,7 @@ character in output streams are stored in an intermediary buffer before being fl
 
 #### Sequence Containers
 
->> sequence containers store a linear sequence of elements
+> sequence containers store a linear sequence of elements
 
 ##### Vector
 
@@ -113,7 +113,7 @@ Array of arrays
 
 #### Associative Containers
 
->> associative containers organize elements by unique keys
+> associative containers organize elements by unique keys
 
 ##### std::map
 
@@ -187,3 +187,40 @@ iterator "falvors" alow us to handle `const` containers more appropriately
 `std::rbegin()`
 
 Reverse iterators can only exist for bidirectional iterators
+
+### Chapter 6: Classes
+
+structures which are classes without access restrictions  
+list initialization constructor
+the default access modifier of class is `private`
+
+types of inheritance
+> default is private
+1. public
+  - public -> public
+  - protected -> protected
+  - private -> not accessible in derived class
+2. protected
+  - public -> protected
+  - protected -> protected
+  - private -> not accessible in derived class
+3. private
+  - public -> private
+  - protected -> private
+  - private -> not accessible in derived class
+
+virtual method: to implement polymorphism
+- for mulitple inheritence, the first vtable will be combined with the derived class, and the rest are keeping their vtables
+virtual inheritence: to avoid access ambiguity
+- will not combine vtables
+
+to know more about memory alignment of inheritence, virtual inheritence, following these:
+- https://www.cnblogs.com/ThousandPine/p/18111381
+- https://chillstepp.github.io/2024/06/12/%E7%8E%B0%E4%BB%A3C++%E5%92%8C%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E7%90%86%E8%A7%A3%E8%99%9A%E5%87%BD%E6%95%B0/
+
+### Chapter 7: Inheritence
+
+use `override` to indicate that you're overriding a virtual method
+
+A class with one or more pure virtual functions is an abstract class, it can’t
+be instantiated

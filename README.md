@@ -224,3 +224,68 @@ use `override` to indicate that you're overriding a virtual method
 
 A class with one or more pure virtual functions is an abstract class, it can’t
 be instantiated
+
+### Chapter 8: Class Templates & Const Correctness
+
+**macro usage**
+- object-like macro
+- function-like macro
+  - `#`: converts a macro parameter to a string literal
+  - `##`: concatenates tokens
+  - `\`: for line continuation, the `\` must be the last character on the line
+  - Variadic Macros
+    - all variable can be replaced with `__VA_ARGS__`
+    - to omit comma if `__VA_ARGS__` is empty, use `##__VA_ARGS__`
+
+Non-type Template Parameters:
+```cpp
+template<typename T, std::size_t N>
+struct std::array { /* ... */ };
+```
+
+A few template quirks:
+- Must copy `template <…>` syntax in .cpp
+```cpp
+template <typename T>
+T& Vector<T>::at(size_t i) {
+// Implementation...
+}
+```
+- .h must include .cpp at bottom of file
+- `typename` is the same as `class`
+
+`const` method: promise to not modify class member, `const` object can only invoke `const` member function
+
+`const_cast`: used to cast away the const
+`mutable` keyword: circumvent const protections
+
+### Chapter 9: Template Functions
+
+`concept`: used to add constrainst for template
+
+cursive template:
+Variadic types don’t have to be the same
+```cpp
+template <Comparable T>
+T min(const T& v) { return v; }
+template <Comparable T, Comparable... Args>
+T min(const T& v, const Args&... args) {
+  auto m = min(args...);
+  return v < m ? v : m;
+}
+```
+
+Template Metaprogramming
+```cpp
+template <>
+struct Factorial<0> {
+  enum { value = 1 };
+};
+template <size_t N>
+struct Factorial {
+  enum { value = N * Factorial<N - 1>::value };
+};
+std::cout << Factorial<7>::value << std::endl;
+```
+substitution: `constexpr` or `consteval`
+

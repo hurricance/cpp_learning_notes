@@ -218,6 +218,8 @@ to know more about memory alignment of inheritence, virtual inheritence, followi
 - https://www.cnblogs.com/ThousandPine/p/18111381
 - https://chillstepp.github.io/2024/06/12/%E7%8E%B0%E4%BB%A3C++%E5%92%8C%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E7%90%86%E8%A7%A3%E8%99%9A%E5%87%BD%E6%95%B0/
 
+object slice will reset vptr table
+
 ### Chapter 7: Inheritence
 
 use `override` to indicate that you're overriding a virtual method
@@ -289,3 +291,44 @@ std::cout << Factorial<7>::value << std::endl;
 ```
 substitution: `constexpr` or `consteval`
 
+### Chapter 10: Functions and Lambdas
+
+Lambda Syntax:
+
+```cpp
+auto lambda = [capture-values](arguments) -> return-type {
+  return expression;
+};
+
+[x](arguments) // captures x by value (makes a copy)
+[x&](arguments) // captures x by reference
+[x, y](arguments) // captures x, y by value
+[&](arguments) // captures everything by reference
+[&, x](arguments) // captures everything except x by reference
+[=](arguments) // captures everything by value
+```
+
+`functor`: A functor is any object that defines an operator()
+
+range algorithms: defined in \<algorithm\>
+views relevant func: defined in \<range\>
+
+### Chapter 11: Operator Overloading
+
+Operator Overloading Syntax
+```cpp
+  return_type operator<symbol>(parameter_list);
+```
+
+there are two ways to overload:
+1. member overload
+  - Declares the overloaded operator within the scope of your class
+2. Non-member overloading
+  - Declare the overloaded operator outside of class definitions
+  - Define both the left and right hand objects as parameters
+
+use friend function to access private member field
+
+before deciding to use operator overloading, consider:
+1. Principle of Least Astonishment(PoLA) (reasonable to define)
+2. rule of contrariety (once define `==`, also define `!=`)

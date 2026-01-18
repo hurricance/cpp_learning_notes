@@ -3,3 +3,5 @@ build
 .vscode
 /main.cpp
 main
+main.dSYM
+.DS_Store

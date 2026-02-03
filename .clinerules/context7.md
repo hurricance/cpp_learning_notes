@@ -1,0 +1,1 @@
+- when using context7, make sure that you keep the range of output in the range 3k to 5k based on what you think is the best

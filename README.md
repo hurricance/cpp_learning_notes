@@ -313,6 +313,20 @@ auto lambda = [capture-values](arguments) -> return-type {
 range algorithms: defined in \<algorithm\>
 views relevant func: defined in \<range\>
 
+note:
+```cpp
+std::vector<Person> people = {
+  {1, "Alice", 30},
+  {2, "Bob", 25},
+  {3, "Charlie", 35}
+};
+
+std::ranges::for_each(people, 
+  [](const auto& name) { std::cout << name << ' '; },
+  &Person::name // use member pointer for projection, member pointer is essentially a offset in a struct/class 
+);
+```
+
 ### Chapter 11: Operator Overloading
 
 Operator Overloading Syntax
@@ -332,3 +346,9 @@ use friend function to access private member field
 before deciding to use operator overloading, consider:
 1. Principle of Least Astonishment(PoLA) (reasonable to define)
 2. rule of contrariety (once define `==`, also define `!=`)
+
+note:
+```cpp
+vector<int> v1 = v2 // call copy constructor, equals to std::vector<int> v1(v2)
+v1 = v2 // '=' operator overloading
+```
